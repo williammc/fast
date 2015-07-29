@@ -19,14 +19,8 @@ CMAKE_MINIMUM_REQUIRED (VERSION 2.8.3)
 SET(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Build type and flags
-SET(CMAKE_BUILD_TYPE Release) # Options:  Debug, RelWithDebInfo, Release
-SET(CMAKE_CXX_FLAGS "-Wall -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unknown-pragmas")
-SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0 -g")
-IF(IS_ARM)
-  SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -mfpu=neon -march=armv7-a")
-ELSE()
-  SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O3 -mmmx -msse -msse -msse2 -msse3 -mssse3 -fomit-frame-pointer")
-ENDIF()
+include(CMakerCommonUtil)
+cmaker_common_build_setting()
 
 # Add Sources
 SET(SOURCES  ${PROJECT_SOURCE_DIR}/src/fast_10.cpp
@@ -40,7 +34,7 @@ ENDIF()
 
 # Add library
 INCLUDE_DIRECTORIES(include src)
-ADD_LIBRARY(${PROJECT_NAME} SHARED ${SOURCES})
+ADD_LIBRARY(${PROJECT_NAME} ${SOURCES})
 
 # Add Tests
 IF(BUILD_TEST)

@@ -1,5 +1,8 @@
-#ifndef FAST_CORNER_UTILITIES_H
-#define FAST_CORNER_UTILITIES_H
+#pragma once
+
+#ifdef WIN32
+#define __SSE2__ 1
+#endif
 
 #if __ARM_NEON__
 #include <arm_neon.h>
@@ -59,4 +62,3 @@ struct Greater
 
 } // namespace fast
 
-#endif

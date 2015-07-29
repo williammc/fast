@@ -4,11 +4,7 @@
 #include <vector>
 #include <list>
 
-#ifndef __SSE2__
-#  error "This file requires SSE2 support. Check your compiler flags."
-#else
-#  include <emmintrin.h>
-#endif
+#include <emmintrin.h>
 
 namespace fast
 {
